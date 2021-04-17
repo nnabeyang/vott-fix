@@ -85,7 +85,7 @@ func readSecurityKey(keyPath, name string) (string, error) {
 			os.Exit(1)
 		}()
 		fmt.Printf("Enter Security Key(%s):", name)
-		bytes, err := terminal.ReadPassword(syscall.Stdin)
+		bytes, err := terminal.ReadPassword(int(syscall.Stdin))
 		if err != nil {
 			return "", err
 		}
