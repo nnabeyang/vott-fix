@@ -1,0 +1,27 @@
+before:
+  hooks:
+    - go mod tidy
+builds:
+  - binary: vott-fix
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - darwin
+    goarch:
+      - amd64
+archives:
+  - replacements:
+      darwin: Darwin
+      386: i386
+      amd64: x86_64
+checksum:
+  name_template: 'checksums.txt'
+snapshot:
+  name_template: "{{ .Tag }}-next"
+changelog:
+  skip: true
+  sort: asc
+  filters:
+    exclude:
+      - '^docs:'
+      - '^test:'
